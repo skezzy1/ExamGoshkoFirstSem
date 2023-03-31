@@ -1,0 +1,125 @@
+Інфа ПМА-13, [08.12.2021 12:25]
+[Forwarded from Саша]
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+
+class Product
+{
+private:
+  string name;
+  int grivna;
+  int coin;
+public:
+  Product()
+  {
+    name = "none";
+    grivna = 0;
+    coin = 0.0;
+  }
+
+  Product(string name, int grivna, int coin)
+  {
+    this->name = name;
+    this->grivna = grivna;
+    this->coin = coin;
+  }
+
+  Product(const Product& other)
+  {
+    this->name = other.name;
+    this->grivna = other.grivna;
+    this->coin = other.coin;
+  }
+
+  void Show()
+  {
+    cout << "Name: " << name << endl;
+    cout << "Grivna: " << grivna << endl;
+    cout << "Coin: " << coin << endl;
+  }
+
+  string GetName()
+  {
+    return name;
+  }
+
+  int GetGrivna()
+  {
+    return grivna;
+  }
+
+  int GetCoin()
+  {
+    return coin;
+  }
+
+  Product& operator =(const Product& other)
+  {
+    this->name = other.name;
+    this->grivna = other.grivna;
+    this->coin = other.coin;
+    return *this;
+  }
+
+  friend ostream& operator <<(ostream& out, Product& product)
+  {
+    out << "Name: " << product.name << endl;
+    out << "Grivna: " << product.grivna << endl;
+    out << "Coin: " << product.coin << endl;
+    return out;
+  }
+
+};
+
+
+bool Compare(Product c1 , Product c2)
+{
+
+  return c1.GetName() < c2.GetName();
+    
+}
+
+
+
+int main()
+{
+  Product list[3]{ Product("Milk", 33 , 0 ) , Product("Bread", 10 , 0 ) , Product("Bear", 45 , 0 ) };
+
+
+  int maxAge = list[1].GetGrivna();
+  Product expansive;
+  for (int i = 0; i < 3; i++)
+  {
+    if (list[i].GetGrivna() > maxAge)
+    {
+      maxAge = list[i].GetGrivna();
+      expansive = list[i];
+    }
+  }
+
+  cout << "The expensive product: " << endl;
+  cout << expansive;
+
+  cout << endl << endl;
+
+  sort(list, list + 3, Compare ); 
+
+  cout << "List after sort by name " << endl;
+
+  for (int i = 0; i < 3; i++)
+  {
+    cout << list[i] << endl;
+  }
+    
+  cout << endl;
+  
+
+
+  system("pause");
+  return 0;
+}
+
+25 варіант 4 завдання

@@ -1,0 +1,38 @@
+Інфа ПМА-13, [08.12.2021 12:25]
+[Forwarded from Саша]
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+
+int main()
+{
+  int n; 
+  cin >> n; 
+
+
+  int max = n % 10;
+  int min = n % 10;
+  while (n % 10 != 0)
+  {
+    if (n % 10 > max)
+      max = n % 10;
+
+    if (n % 10 < min)
+      min = n % 10;
+
+    n /= 10;
+  }
+
+
+  cout << "min: " << min << endl;
+  cout << "max: " << max << endl;
+
+  cout << "Answer: " << min * max << endl;
+
+  cout << endl;
+  system("pause");
+  return 0;
+}
+4 варіант 1 завдання

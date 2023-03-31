@@ -1,0 +1,122 @@
+Інфа ПМА-13, [08.12.2021 12:25]
+[Forwarded from Саша]
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+
+class Club
+{
+private:
+  string name;
+  int age;
+  string city;
+public:
+  Club()
+  {
+    name = "none";
+    age = 0;
+    city = "none";
+  }
+
+  Club(string name, int age, string city)
+  {
+    this->name = name;
+    this->age = age;
+    this->city = city;
+  }
+
+  Club(const Club& other)
+  {
+    this->name = other.name;
+    this->age = other.age;
+    this->city = other.city;
+  }
+
+  void Show()
+  {
+    cout << "Name: " << name << endl;
+    cout << "Age: " << age << endl;
+    cout << "City: " << city << endl;
+  }
+
+  string GetName()
+  {
+    return name;
+  }
+
+  int GetAge()
+  {
+    return age;
+  }
+
+  string GetCity()
+  {
+    return city;
+  }
+
+  Club& operator =(const Club& other)
+  {
+    this->name = other.name;
+    this->age = other.age;
+    this->city = other.city;
+    return *this;
+  }
+
+  friend ostream& operator <<(ostream& out, Club& club)
+  {
+    out << "Name: " << club.name << endl;
+    out << "Age: " << club.age << endl;
+    out << "City: " << club.city << endl;
+    return out;
+  }
+
+};
+
+
+bool Compare(Club c1 , Club c2)
+{
+
+  return c1.GetName() < c2.GetName();
+    
+}
+
+
+
+int main()
+{
+  Club list[3]{ Club("Barsa", 167 , "Spain") , Club("Arsenal", 160 , "England") , Club("Chealse", 180 , "England") };
+
+
+  sort(list, list + 3, Compare ); 
+
+  cout << "List after sort by name " << endl;
+
+  for (int i = 0; i < 3; i++)
+  {
+    cout << list[i] << endl;
+  }
+    
+  cout << endl;
+
+
+  int maxAge = list[0].GetAge();
+  Club oldest;
+  for (int i = 1; i < 3; i++)
+  {
+    if (list[i].GetAge() > maxAge)
+    {
+      maxAge = list[i].GetAge();
+      oldest = list[i] ;
+    }
+  }
+  
+  cout << "The oldest club : " << endl;
+    cout << oldest;
+
+  system("pause");
+  return 0;
+}
+
+4 варіант останє завдання
